@@ -1,20 +1,31 @@
-﻿using System;
+﻿using ExteanstionExceaption;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-
 namespace QueueSystem
 {
     public partial class Form1 : Form
     {
-        private double rho=-1;
+        double mhoMMS = -1;
+        double lambdaMMS = -1;
+        double rhoMMS = -1;
+        double p0MMS = -1;
+        private double rho = -1;
 
         public Form1()
         {
             InitializeComponent();
-            SetDefulatProp();
+            SetDefulatPropForMM1();
+            SetDefulatPropForMMS();
+
         }
 
-        private void SetDefulatProp()
+        private void SetDefulatPropForMMS()
+        {
+            txtMMSP0.ReadOnly = true;
+        }
+
+        private void SetDefulatPropForMM1()
         {
             txtLs.ReadOnly = true;
             txtLq.ReadOnly = true;
@@ -31,30 +42,17 @@ namespace QueueSystem
                 double mu = double.Parse(txtMho.Text);
                 if (mu == 0)
                 {
-                    
+
                     throw new DivideByZeroException("لا يمكن ان تكون ميو صفر");
                 }
                 if (mu <= lambda)
                 {
                     throw new SystemUnstableException("لا يمكن ان تكون متساوية القيم");
                 }
-                 rho = lambda / mu;
+                rho = lambda / mu;
                 txtRho.Text = rho.ToString("F2");
 
-                #region color
-                if (rho < 0.5)
-                {
-                    txtRho.BackColor = Color.LightGreen;
-                }
-                else if (rho < 0.8)
-                {
-                    txtRho.BackColor = Color.Orange;
-                }
-                else
-                {
-                    txtRho.BackColor = Color.Red;
-                }
-                #endregion
+
             }
             catch (Exception ex)
             {
@@ -129,11 +127,51 @@ namespace QueueSystem
 
         private void CalcP0_Click(object sender, EventArgs e)
         {
-            if(rho==-1)
+            if (rho == -1)
             {
                 throw new Exception("the rho is Negtive");
             }
             txtP0.Text = (1 - rho).ToString();
+        }
+
+        private void calcMMSP0_Click(object sender, EventArgs e)
+        {
+            lblMMSReultP0.Text =string.Empty;
+            mhoMMS = Convert.ToDouble(txtMMSmho.Text);
+            lambdaMMS = Convert.ToDouble(txtMMSLambda.Text);
+            //عدد المخدمات
+            int servicesCount = Convert.ToInt32(txtMMSServicesCount.Text);
+            double rateOfServices = mhoMMS * servicesCount;
+            rhoMMS = lambdaMMS / rateOfServices;
+            p0MMS = CalcP0(servicesCount, rhoMMS);
+            p0MMS = p0MMS * 100;
+            lblMMSReultP0.Text = ("P0 = " + p0MMS + "%");
+             
+            txtMMSP0.Text = ("P0 = " + p0MMS + "%");
+        }
+
+        private double CalcP0(int servicesCount, double rhoMMS)
+        {
+            double firstSecation = 0;
+            for (int x = 0; x <= servicesCount - 1; x++)
+            {
+                firstSecation = firstSecation
+                        + (Math.Pow(servicesCount * rhoMMS, x) / Fact(x));
+            }
+            double secoundSecation = (Math.Pow(servicesCount * rhoMMS, servicesCount)
+                            / (Fact(servicesCount) * (1 - rhoMMS)));
+            double result= firstSecation+secoundSecation;
+
+            return 1/ result;
+        }
+        private static long Fact(int number)
+        {
+            long factResult = 1;
+            for (int i = number; i > 1; i--)
+            {
+                factResult = factResult * i;
+            }
+            return factResult;
         }
     }
 }

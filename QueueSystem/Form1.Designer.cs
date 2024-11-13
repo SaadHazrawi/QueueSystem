@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtP0 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtRho = new System.Windows.Forms.TextBox();
             this.CalcPerformance = new System.Windows.Forms.Button();
@@ -41,19 +43,24 @@
             this.txtLq = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtLs = new System.Windows.Forms.TextBox();
+            this.calcMM1P0 = new System.Windows.Forms.Button();
             this.btnCalcRho = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMho = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLambda = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMMSP0 = new System.Windows.Forms.TextBox();
+            this.txtMMSServicesCount = new System.Windows.Forms.TextBox();
+            this.txtMMSmho = new System.Windows.Forms.TextBox();
+            this.txtMMSLambda = new System.Windows.Forms.TextBox();
+            this.calcMMSP0 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtP0 = new System.Windows.Forms.TextBox();
-            this.CalcP0 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblMMSReultP0 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -63,6 +70,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -85,7 +93,7 @@
             this.tabPage1.Controls.Add(this.txtLq);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.txtLs);
-            this.tabPage1.Controls.Add(this.CalcP0);
+            this.tabPage1.Controls.Add(this.calcMM1P0);
             this.tabPage1.Controls.Add(this.btnCalcRho);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txtMho);
@@ -98,6 +106,22 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "M/M/1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1018, 71);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(24, 17);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "P0";
+            // 
+            // txtP0
+            // 
+            this.txtP0.Location = new System.Drawing.Point(765, 64);
+            this.txtP0.Name = "txtP0";
+            this.txtP0.Size = new System.Drawing.Size(223, 24);
+            this.txtP0.TabIndex = 16;
             // 
             // label7
             // 
@@ -189,6 +213,16 @@
             this.txtLs.Size = new System.Drawing.Size(223, 24);
             this.txtLs.TabIndex = 5;
             // 
+            // calcMM1P0
+            // 
+            this.calcMM1P0.Location = new System.Drawing.Point(765, 145);
+            this.calcMM1P0.Name = "calcMM1P0";
+            this.calcMM1P0.Size = new System.Drawing.Size(85, 23);
+            this.calcMM1P0.TabIndex = 4;
+            this.calcMM1P0.Text = "Calc p0";
+            this.calcMM1P0.UseVisualStyleBackColor = true;
+            this.calcMM1P0.Click += new System.EventHandler(this.CalcP0_Click);
+            // 
             // btnCalcRho
             // 
             this.btnCalcRho.Location = new System.Drawing.Point(329, 162);
@@ -233,75 +267,116 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox2);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.lblMMSReultP0);
+            this.tabPage2.Controls.Add(this.txtMMSP0);
+            this.tabPage2.Controls.Add(this.txtMMSServicesCount);
+            this.tabPage2.Controls.Add(this.txtMMSmho);
+            this.tabPage2.Controls.Add(this.txtMMSLambda);
+            this.tabPage2.Controls.Add(this.calcMMSP0);
             this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1091, 575);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "M/M/S";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtMMSP0
             // 
-            this.textBox2.Location = new System.Drawing.Point(569, 121);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(136, 24);
-            this.textBox2.TabIndex = 3;
+            this.txtMMSP0.Location = new System.Drawing.Point(389, 402);
+            this.txtMMSP0.Name = "txtMMSP0";
+            this.txtMMSP0.Size = new System.Drawing.Size(193, 24);
+            this.txtMMSP0.TabIndex = 11;
             // 
-            // label9
+            // txtMMSServicesCount
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(761, 124);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 17);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "label9";
+            this.txtMMSServicesCount.Location = new System.Drawing.Point(389, 156);
+            this.txtMMSServicesCount.Name = "txtMMSServicesCount";
+            this.txtMMSServicesCount.Size = new System.Drawing.Size(193, 24);
+            this.txtMMSServicesCount.TabIndex = 12;
             // 
-            // textBox1
+            // txtMMSmho
             // 
-            this.textBox1.Location = new System.Drawing.Point(569, 61);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 24);
-            this.textBox1.TabIndex = 1;
+            this.txtMMSmho.Location = new System.Drawing.Point(389, 97);
+            this.txtMMSmho.Name = "txtMMSmho";
+            this.txtMMSmho.Size = new System.Drawing.Size(193, 24);
+            this.txtMMSmho.TabIndex = 9;
+            // 
+            // txtMMSLambda
+            // 
+            this.txtMMSLambda.Location = new System.Drawing.Point(389, 48);
+            this.txtMMSLambda.Name = "txtMMSLambda";
+            this.txtMMSLambda.Size = new System.Drawing.Size(193, 24);
+            this.txtMMSLambda.TabIndex = 7;
+            // 
+            // calcMMSP0
+            // 
+            this.calcMMSP0.Location = new System.Drawing.Point(389, 211);
+            this.calcMMSP0.Name = "calcMMSP0";
+            this.calcMMSP0.Size = new System.Drawing.Size(193, 28);
+            this.calcMMSP0.TabIndex = 15;
+            this.calcMMSP0.Text = "Calc P";
+            this.calcMMSP0.UseVisualStyleBackColor = true;
+            this.calcMMSP0.Click += new System.EventHandler(this.calcMMSP0_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(761, 64);
+            this.label8.Location = new System.Drawing.Point(613, 299);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 17);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 17);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "P0";
             // 
-            // label10
+            // label9
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1018, 71);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 17);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "P0";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(613, 163);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(100, 17);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Services Count";
             // 
-            // txtP0
+            // label11
             // 
-            this.txtP0.Location = new System.Drawing.Point(765, 64);
-            this.txtP0.Name = "txtP0";
-            this.txtP0.Size = new System.Drawing.Size(223, 24);
-            this.txtP0.TabIndex = 16;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(613, 104);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 17);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "mho";
             // 
-            // CalcP0
+            // label12
             // 
-            this.CalcP0.Location = new System.Drawing.Point(765, 112);
-            this.CalcP0.Name = "CalcP0";
-            this.CalcP0.Size = new System.Drawing.Size(223, 23);
-            this.CalcP0.TabIndex = 4;
-            this.CalcP0.Text = "Clac P0";
-            this.CalcP0.UseVisualStyleBackColor = true;
-            this.CalcP0.Click += new System.EventHandler(this.CalcP0_Click);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(613, 55);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 17);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "lambda";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1091, 575);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lblMMSReultP0
+            // 
+            this.lblMMSReultP0.AutoSize = true;
+            this.lblMMSReultP0.Location = new System.Drawing.Point(409, 299);
+            this.lblMMSReultP0.Name = "lblMMSReultP0";
+            this.lblMMSReultP0.Size = new System.Drawing.Size(24, 17);
+            this.lblMMSReultP0.TabIndex = 16;
+            this.lblMMSReultP0.Text = "P0";
             // 
             // Form1
             // 
@@ -341,13 +416,21 @@
         private System.Windows.Forms.Button CalcPerformance;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtRho;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtP0;
-        private System.Windows.Forms.Button CalcP0;
+        //private System.Windows.Forms.Button CalcP0;
+        private System.Windows.Forms.TextBox txtMMSP0;
+        private System.Windows.Forms.TextBox txtMMSServicesCount;
+        private System.Windows.Forms.TextBox txtMMSmho;
+        private System.Windows.Forms.TextBox txtMMSLambda;
+        private System.Windows.Forms.Button calcMMSP0;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button calcMM1P0;
+        private System.Windows.Forms.Label lblMMSReultP0;
     }
 }
 
